@@ -1,0 +1,43 @@
+                                <form method="post" class="form-horizontal" enctype="multipart/form-data">
+<div class="form-group">
+<label class="col-sm-2 control-label">Quantity</label>
+<div class="col-sm-4">
+<input type="number" name="Quantity" class="form-control" required>
+</div>
+
+</div>
+
+
+
+												<div class="col-sm-9 col-sm-offset-2">
+													<button class="btn btn-default" type="reset">Clear</button>
+													<button class="btn btn-primary" name="Book" type="submit">Book </button>
+												</div>
+                                        </form>
+ <?php
+    
+ if(isset($_POST['Book']))
+{
+     echo $Btype;
+ $Quantity  = $_POST['Quantity'];
+ if($Btype == $dbBtype && $dbQuantity >= $Quantity ){
+     
+              $query1 = "insert into request values(NULL,'{$Hos_id}','{$Btype}', CURRENT_TIMESTAMP,'{$Quantity}','Order Placed') " ;
+     $result = mysqli_query($conn,$query1);
+     echo $Btype;
+     ?>
+ <?php }
+  else{
+      ?>
+      <div class="alert alert-danger" role="alert">
+  <h1>Sorry</h1>OUT OF STOCK!!
+</div>     
+ <?php }
+} ?>                                       
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+    
