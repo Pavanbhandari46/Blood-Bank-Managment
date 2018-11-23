@@ -105,18 +105,24 @@ echo $Emp_Id;?>
 <select name="BloodType" class="form-control" required>
 <option value="">Select</option>
 <option value="O+">O+</option>
+<option value="O-">O-</option>
+<option value="A+">A+</option>
+<option value="A-">A-</option>
+<option value="B+">B+</option>
+<option value="B-">B-</option>
 <option value="AB+">AB+</option>
+<option value="AB-">AB-</option>
 </select>
 
 </div>
 </div>
 
-<div class="form-group">
+<!--<div class="form-group">
 <label class="col-sm-2 control-label">Date of Registration </label>
 <div class="col-sm-4">
-<input type="text" name="Dateofreg" class="form-control" required>
+<input type="text" name="Dateofreg" placeholder = "YYYY/MM/DD"class="form-control" required>
 </div>
-</div>
+</div>-->
 											
 <div class="hr-dashed"></div>
 <div class="form-group">
@@ -167,19 +173,24 @@ echo $Emp_Id;?>
         $phno = $_POST['phno'];
         $BloodType = $_POST['BloodType'];
         $History = $_POST['History'];
-        $Dateofreg = $_POST['Dateofreg'];
+        //$Dateofreg = $_POST['Dateofreg'];
         $query = "insert into blooddonor values({$Donor_id},'{$Name}','{$Age}','{$Sex}','{$Address}','{$phno}','{$BloodType}','{$History}')";
 
         $result = mysqli_query($conn,$query);
                         if(!$result){
                     echo"<script>alert('Donor Id already exists');</script>";
-                        //("Error description: " . mysqli_error($conn));
+                        echo("Error description: " . mysqli_error($conn));
         }
             else{
-                $query1 = "insert into dateofreg values({$Emp_Id},{$Donor_id},'{$Dateofreg}')";
+                $query1 = "insert into dateofreg1 values({$Emp_Id},{$Donor_id},CURRENT_TIMESTAMP)";
 
                 $result1 = mysqli_query($conn,$query1);
-                echo "<script>alert('Donor sucessfully registered');</script>";
+                if(!result1)
+                {
+                echo "<script>alert('Invalid date format');</script>";
+            	}
+            	else
+            		echo "<script>alert('Donor successfully registered');</script>";
             }
         }
 

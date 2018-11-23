@@ -63,7 +63,7 @@ if(isset($_POST['login']))
 
 <body>
 	
-	<div class="login-page bk-img" style="background-image: url(img/banner.png);">
+	<div class="login-page bk-img" style="background-image: url(img/plan.jpg);">
 		<div class="form-content">
 			<div class="container">
 				<div class="row">

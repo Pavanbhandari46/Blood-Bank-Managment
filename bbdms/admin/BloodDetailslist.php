@@ -52,101 +52,73 @@ else{
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 class="page-title">Donor List</h2>
+						<h2 class="page-title">Blood Details List</h2>
 
 						<!-- Zero Configuration Table -->
 						
 						<div class="panel panel-default">
-							<div class="panel-heading">Donor List</div>
+							<div class="panel-heading">Delete Blood</div>
 							<div class="panel-body">
 							
 								<table id="zctb" class="display table  table-bordered table-hover" cellspacing="0" width="100%">
 									<thead>
 										<tr>
-										    <th>Donor_id</th>
-											<th>Name</th>
-											<th>age</th>
-											<th>Sex</th>
-											<th>Address</th>
-											<th>Phno</th>
+										    <th>BloodBag No</th>
+											<th>Quantity</th>
 											<th>BloodType</th>
-											<th>History</th>
-											
+											<th>Date of Exp</th>
+											<th>Donor_Id</th>
+											<th>Action</th>
 
 										</tr>
 									</thead>
 									
 <tbody>
     <?php
-    $query = "Select * from blooddonor";
-$donors = mysqli_query($conn,$query);
-while($row = mysqli_fetch_assoc($donors))
+    $query = "Select * from BloodDetails";
+$Blood = mysqli_query($conn,$query);
+while($row = mysqli_fetch_assoc($Blood))
 {
+    $Blood_Bagno = $row['Blood_Bagno'];
+    $Quantity = $row['Quantity'];
+    $Btype = $row['Btype'];
+    $Dateofexp = $row['Dateofexp'];
     $Donor_id = $row['Donor_id'];
-    $Name = $row['Name'];
-    $Age = $row['Age'];
-    $Sex = $row['Sex'];
-    $Address = $row['Address'];
-    $phno = $row['phno'];
-    $BloodType = $row['BloodType'];
-    $History = $row['History'];
+
 
 
 echo "<tr>";
+echo "<td>$Blood_Bagno</td>";
+echo "<td>$Quantity</td>";
+echo "<td>$Btype</td>";
+echo "<td>$Dateofexp</td>";
 echo "<td>$Donor_id</td>";
-echo "<td>$Name</td>";
-echo "<td>$Age</td>";
-echo "<td>$Sex</td>";
-echo "<td>$Address</td>";
-echo "<td>$phno</td>";
-echo "<td>$BloodType</td>";
-echo "<td>$History</td>";
-}
+
+?>
+<td><a class="btn btn-danger"
+<?php
+  echo "href='delete1.php?delete={$Blood_Bagno}'" 
 ?>
 
- 
-                                    
-
-
+role="button">Delete</a></td>
+ <?php echo "<tr>";
+     } ?>
 									
 </tbody>
-								</table>
-
-  													
-    </div>
-             
-
+</table>
+ </div>
 
 <?php
-                              
-
-
 
 ?>
-                                                   
-
-                                                   
-                                                   
-                                                   
-                                                   
-                                                                                                   
-                                                    
-                                                    
-
-
-												</div>
-											</div>
-
-						
-
+            	
+								</div>
+							</div>
 							</div>
 						</div>
 					</div>
 				</div>
             </div>
-
-
-	
 </body>
 </html>
 <?php } ?>

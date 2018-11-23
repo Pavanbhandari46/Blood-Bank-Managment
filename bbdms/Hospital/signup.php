@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en" class="no-js">
 
@@ -19,9 +18,7 @@
 	<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-	
 <div style="background-color:lightblue">
 		<div class="form-content">
 			<div class="container">
@@ -63,33 +60,23 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
         $cpassword = $_POST['cpassword'];
-        if($password === $cpassword){
+        if($password == $cpassword){
             $query = "insert into hospital values(NULL,'{$Hos_Name}','{$Hos_phno}','{$Hos_Address}','{$username}','{$password}')";
-
             $result = mysqli_query($conn,$query);
                 if(!$result){
                     echo"<script>alert('Username already exists');</script>";
-                        //("Error description: " . mysqli_error($conn));
-        }
+  	 }
             else{
                 echo "<script>alert('You have been sucessfully registered');</script>";
-            }
+            	}
         }
         else
         {
-           echo "<script>alert('error');</script>";  
+           echo "<script>alert('passwords do not match');</script>";  
         }
     }
-    ?>
-							
-							
-							
-							
-							
-							
-							
-						</div>
-					</div>
+    ?></div>
+	</div>
 				</div>
 			</div>
 		</div>

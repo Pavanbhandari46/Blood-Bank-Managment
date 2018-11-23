@@ -7,7 +7,12 @@ if(strlen($_SESSION['username'])==0)
 header('location:index.php');
 }
 else{
-    ?>
+
+
+
+ ?>
+
+<!doctype html>
 <html lang="en" class="no-js">
 
 <head>
@@ -18,7 +23,7 @@ else{
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>BBDMS| Admin Add Donor</title>
+	<title>BBDMS</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -36,118 +41,112 @@ else{
 	<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
 	<!-- Admin Stye -->
 	<link rel="stylesheet" href="css/style.css">
+ 
 
 </head>
 
 <body>
-
-
 	<?php include('includes/header.php');?>
+
 	<div class="ts-main-content">
-	<?php include('includes/leftbar.php');?>
+		<?php include('includes/leftbar.php');?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
-                
 
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 class="page-title">Blood Details List</h2>
+						<h2 class="page-title">Status</h2>
 
 						<!-- Zero Configuration Table -->
-						
 						<div class="panel panel-default">
-							<div class="panel-heading">Delete Blood</div>
+							<div class="panel-heading"> Info</div>
 							<div class="panel-body">
 							
 								<table id="zctb" class="display table  table-bordered table-hover" cellspacing="0" width="100%">
 									<thead>
 										<tr>
-										    <th>BloodBag No</th>
-											<th>Quantity</th>
-											<th>BloodType</th>
-											<th>Date of Exp</th>
-											<th>Donor_Id</th>
-											<th>Action</th>
-
+                                            <th>Order_id</th>
+										    <th>Hos_id</th>
+											<th>Date of Reg</th>
+											<th>Req Btype</th>
+								            <th>Quantity</th>
+											<th>Status</th>
+											
+											<th>Action</th>	
 										</tr>
 									</thead>
 									
 <tbody>
-    <?php
-    $query = "Select * from BloodDetails";
-$Blood = mysqli_query($conn,$query);
-while($row = mysqli_fetch_assoc($Blood))
+                                    
+
+
+
+<?php
+//$Hos_id = $_SESSION['Hos_id'];
+$query = "Select * from request where status = 'Order Placed'";
+
+$donors = mysqli_query($conn,$query);
+while($row = mysqli_fetch_assoc($donors))
 {
-    $Blood_Bagno = $row['Blood_Bagno'];
-    $Quantity = $row['Quantity'];
-    $Btype = $row['Btype'];
-    $Dateofexp = $row['Dateofexp'];
-    $Donor_id = $row['Donor_id'];
+        $Order_id = $row['Order_id'];
+        $Hos_id = $row['Hos_id'];
+        $Dateofreq = $row['Dateofreq'];
+        $Quantity = $row['Quantity'];
+        $Status = $row['Status'];
+        $Btype = $row['Btype'];
 
 
 
 echo "<tr>";
-echo "<td>$Blood_Bagno</td>";
+echo "<td>$Order_id</td>";
+echo "<td>$Hos_id</td>";
+echo "<td>$Dateofreq</td>";
+    echo "<td>$Btype</td>";
 echo "<td>$Quantity</td>";
-echo "<td>$Btype</td>";
-echo "<td>$Dateofexp</td>";
-echo "<td>$Donor_id</td>";
+echo "<td>$Status</td>";
+
+//cho "<td>$Emp_role</td>";
 
 ?>
-<td><a class="btn btn-danger"
+<td>
+<a class="btn btn-success"
 <?php
-  echo "href='delete1.php?delete={$Blood_Bagno}'" 
+
+  echo "href='accept.php?accept={$Order_id}?quantity={$Quantity}'" 
 ?>
 
-role="button">Delete</a></td>
+
+
+name="submit" type="submit" role="button">Accept</a>
+<a class="btn btn-danger"
+<?php
+  echo "href='reject.php?reject={$Order_id}'" 
+?>
+
+name="submit" type="submit" role="button">Reject</a>
+</td>
  <?php echo "<tr>";
      } ?>
-
-
- 
-                                    
-
-
-									
-</tbody>
+										
+									</tbody>
 								</table>
-
-  													
-    </div>
-             
-
-
-<?php
-                              
-
-
-
-?>
-                                                   
-
-                                                   
-                                                   
-                                                   
-                                                   
-                                                                                                   
-                                                    
-                                                    
-
-
-												</div>
-											</div>
-
-						
 
 							</div>
 						</div>
+
+					
+
 					</div>
 				</div>
-            </div>
 
+			</div>
+		</div>
+	</div>
 
+	
 	
 </body>
 </html>
+
 <?php } ?>

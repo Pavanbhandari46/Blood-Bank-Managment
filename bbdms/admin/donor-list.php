@@ -7,12 +7,7 @@ if(strlen($_SESSION['username'])==0)
 header('location:index.php');
 }
 else{
-
-
-
- ?>
-
-<!doctype html>
+    ?>
 <html lang="en" class="no-js">
 
 <head>
@@ -23,7 +18,7 @@ else{
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>BBDMS</title>
+	<title>BBDMS| Admin Add Donor</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -41,111 +36,117 @@ else{
 	<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
 	<!-- Admin Stye -->
 	<link rel="stylesheet" href="css/style.css">
- 
 
 </head>
 
 <body>
-	<?php include('includes/header.php');?>
 
+
+	<?php include('includes/header.php');?>
 	<div class="ts-main-content">
-		<?php include('includes/leftbar.php');?>
+	<?php include('includes/leftbar.php');?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
+                
 
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 class="page-title">Status</h2>
+						<h2 class="page-title">Donor List</h2>
 
 						<!-- Zero Configuration Table -->
+						
 						<div class="panel panel-default">
-							<div class="panel-heading"> Info</div>
+							<div class="panel-heading">Donor List</div>
 							<div class="panel-body">
 							
 								<table id="zctb" class="display table  table-bordered table-hover" cellspacing="0" width="100%">
 									<thead>
 										<tr>
-                                            <th>Order_id</th>
-										    <th>Hos_id</th>
+										    <th>Donor_id</th>
+											<th>Name</th>
+											<th>age</th>
+											<th>Sex</th>
+											<th>Address</th>
+											<th>Phno</th>
+											<th>BloodType</th>
+											<th>History</th>
 											<th>Date of Reg</th>
-											<th>Req Btype</th>
-								            <th>Quantity</th>
-											<th>Status</th>
+											<th>Emp Id</th>
 											
-											<th>Action</th>	
+
 										</tr>
 									</thead>
 									
 <tbody>
-                                    
-
-
-
-<?php
-//$Hos_id = $_SESSION['Hos_id'];
-$query = "Select * from request where status = 'Order Placed'";
-
+    <?php
+    $query = "Select * from blooddonor b natural join dateofreg1 d where b.Donor_id = d.Donor_id ";
 $donors = mysqli_query($conn,$query);
 while($row = mysqli_fetch_assoc($donors))
 {
-        $Order_id = $row['Order_id'];
-        $Hos_id = $row['Hos_id'];
-        $Dateofreq = $row['Dateofreq'];
-        $Quantity = $row['Quantity'];
-        $Status = $row['Status'];
-        $Btype = $row['Btype'];
-
+    $Donor_id = $row['Donor_id'];
+    $Name = $row['Name'];
+    $Age = $row['Age'];
+    $Sex = $row['Sex'];
+    $Address = $row['Address'];
+    $phno = $row['phno'];
+    $BloodType = $row['BloodType'];
+    $History = $row['History'];
+    $dateofreg = $row['Dateofreg'];
+    $empid = $row['Emp_id'];
 
 
 echo "<tr>";
-echo "<td>$Order_id</td>";
-echo "<td>$Hos_id</td>";
-echo "<td>$Dateofreq</td>";
-    echo "<td>$Btype</td>";
-echo "<td>$Quantity</td>";
-echo "<td>$Status</td>";
-
-//cho "<td>$Emp_role</td>";
-
-?>
-<td>
-<a class="btn btn-success"
-<?php
-  echo "href='accept.php?accept={$Order_id}'" 
+echo "<td>$Donor_id</td>";
+echo "<td>$Name</td>";
+echo "<td>$Age</td>";
+echo "<td>$Sex</td>";
+echo "<td>$Address</td>";
+echo "<td>$phno</td>";
+echo "<td>$BloodType</td>";
+echo "<td>$History</td>";
+echo "<td>$dateofreg</td>";
+echo "<td>$empid</td>";
+}
 ?>
 
-name="submit" type="submit" role="button">Accept</a>
-<a class="btn btn-danger"
-<?php
-  echo "href='reject.php?reject={$Order_id}'" 
-?>
+ 
+                                    
 
-name="submit" type="submit" role="button">Reject</a>
-</td>
- <?php echo "<tr>";
-     } ?>
-										
-									</tbody>
+
+									
+</tbody>
 								</table>
+
+  													
+    </div>
+             
+
+
+                                                   
+
+                                                   
+                                                   
+                                                   
+                                                   
+                                                                                                   
+                                                    
+                                                    
+
+
+												</div>
+											</div>
 
 						
 
 							</div>
 						</div>
-
-					
-
 					</div>
 				</div>
+            </div>
 
-			</div>
-		</div>
-	</div>
 
-	
 	
 </body>
 </html>
-
 <?php } ?>
