@@ -1,5 +1,5 @@
 <div class="brand clearfix">
-	<a  style="font-size: 30px; padding-top:1%; color:#ffff">BloodBank & Donor Management System </a>  
+	<a href="\bbdms\index.php" style="font-size: 30px; padding-top:1%; color:#ffff">BloodBank & Donor Management System </a>  
 		<span class="menu-btn"><i class="fa fa-bars"></i></span>
 		<ul class="ts-profile-nav">
 			
@@ -10,12 +10,6 @@
                     $Name = $_SESSION['Name'];
                     
                     echo $Name;
-                    
-                    
-                    
-                    
-                    
-                    
                     
                     ?><i class="fa fa-angle-down hidden-side"></i></a>
 				<ul>

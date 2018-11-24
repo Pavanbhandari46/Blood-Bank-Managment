@@ -144,7 +144,7 @@ else{
                 //$query1 = "insert into dateofreg values({$Emp_Id},{$Donor_id},'{$Dateofreg}')";
 
                 $result1 = mysqli_query($conn,$query1);
-                echo "<script>alert('Donor sucessfully registered');</script>";
+                echo "<script>alert('Employee sucessfully registered');</script>";
             }
         
     }
